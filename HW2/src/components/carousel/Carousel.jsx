@@ -22,7 +22,7 @@ const Carousel = (props) => {
                     onClick={() => setCurrentPicture(currentPicture>0?currentPicture-1:currentPicture)
                     }
                 >
-                   Движение слайда влево
+                   Движение слайда влево 
                 </div>
                 <div 
                     className={styles.testStyle}

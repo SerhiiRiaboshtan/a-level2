@@ -1,0 +1,22 @@
+.login {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginInput {
+    display: flex;
+    /* flex-direction: column; */
+    margin-bottom: 10px;
+    width: 33.3%;
+}
+
+.titleLoginPassword {
+    width: 80px;
+}
+
+.buttonLogin {
+   width: 10%;
+}

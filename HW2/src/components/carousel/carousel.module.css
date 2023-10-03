@@ -8,23 +8,29 @@
     display: flex;
 }
 
-.oneSmallPicture{
+.oneSmallPicture {
     height: 50px;
     width: 100px;
     margin: 5px;
     
 }
 
-.testStyle  {
-    border: 5px solid red;
-    height: 100%;
-    width: 33%;
-}
-
-/* .container {
+.container {
     position: relative;
+    height: 80vh 
 }
 
-.element {
+.arrowLeft {
+    border: 1px solid lightgray;
+    min-height:90%;
+    width: 30% !important;
     position: absolute;
-} */
+    z-index: 5;
+}
+
+.bigImage {
+    position: absolute;
+    width: auto !important;
+    max-height: 90%;
+}
+

@@ -10,45 +10,27 @@ const Carousel = (props) => {
     
     return (
         <div className={styles.carousel}>
-            <div className={styles.container}>   
-                <img 
-                    className={styles.element}
-                    alt='loading' 
-                    src={props.images[currentPicture]}
-                    onClick={() => setCurrentPicture(currentPicture<props.images.length-1?currentPicture+1:currentPicture)}
-                />
-                <div 
-                    className={styles.testStyle}
-                    onClick={() => setCurrentPicture(currentPicture>0?currentPicture-1:currentPicture)
-                    }
-                >
-                   Движение слайда влево 
-                </div>
-                <div 
-                    className={styles.testStyle}
-                    onClick={() => setCurrentPicture(currentPicture<props.images.length-1?currentPicture+1:currentPicture)
-                    }
-                >
-                   Движение слайда вправо
+            <div>   
+                <div className={styles.container}>
+                    <div 
+                        className={styles.arrowLeft}
+                        onClick={() => setCurrentPicture(currentPicture>0?currentPicture-1:currentPicture)
+                        }
+                    >
+                       <p className='styles.arrowLeftButton'>`&#60`</p>
+                    </div>
+                    <img 
+                        className={styles.bigImage}
+                        alt='loading' 
+                        src={props.images[currentPicture]}
+                        onClick={() => setCurrentPicture(currentPicture<props.images.length-1?currentPicture+1:currentPicture)}
+                    />
                 </div>
             </div> 
             <Thumbnails
                 images={props.images} 
                 current={currentPicture}
                 onChange={updatePicture}/>
-            {/* <div className={styles.smallPictures}>
-                {props.images.map((image, index) => {
-                    return (
-                        <img 
-                            className={styles.oneSmallPicture}
-                            key={index} 
-                            alt='loading' 
-                            src={image}
-                            onClick={() => setCurrentPicture(index)}
-                        />
-                    )
-                })}
-            </div> */}
         </div>
     )
 }

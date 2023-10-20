@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from './stopWatch.module.css'
 import DrawList from './DrawList'
 
-const Stopwatch = () => {
+const StopWatch = () => {
     const [seconds, secChange]=useState(0);
     const [work, setWork]=useState(0);
     const [list, setList]=useState([]);
@@ -18,7 +18,7 @@ const Stopwatch = () => {
     return (
         <>
             <div className={styles.container}>    
-                <div>{stringHHMMSS} </div>
+                <div style={{margin:10, backgroundColor: 'lightgrey', padding: 10, border:1, borderColor: 'green', borderStyle:'solid', borderRadius:10}}>{stringHHMMSS} </div>
                 <div className={styles.containerButtonList}>
                     <div className={styles.buttonContainer}>
                         <button className={styles.btnClass} onClick ={ () =>setWork(!work)}>{!work?'Start':'Stop'}</button>
@@ -26,9 +26,9 @@ const Stopwatch = () => {
                             disabled={!work} 
                             className={styles.btnClass} 
                             onClick = {() => {
-                                    const tempList = list
-                                    tempList.push(stringHHMMSS)
-                                    setList(tempList)
+                                    // const tempList = list
+                                    // tempList.push(stringHHMMSS)
+                                    setList((prev) => [...prev, stringHHMMSS])
                                 }
                             }
                         >Interval</button>
@@ -44,10 +44,12 @@ const Stopwatch = () => {
                     </div>
                     <DrawList list = {list}/>
                 </div>
-            </div> 
+            </div>
+            <a href={'/'}>Login</a><br/>
+            <a href={'/contacts'}>Contacts</a><br/> 
         </>
     );
 }
         // console.log(getTimeString(convertSecondsToHHMMSS({seconds:seconds})))
 
-export default Stopwatch;
+export default StopWatch;

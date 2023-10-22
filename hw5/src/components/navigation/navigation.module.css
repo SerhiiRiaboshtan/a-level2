@@ -1,0 +1,17 @@
+.classNavigation {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    background-color: grey;
+    margin: 0;
+    padding: 10px;
+}
+
+.classNavigationLi {
+    width: 100px;
+}
+
+.classNavigationLi >a {
+    text-decoration: none;
+} 
+

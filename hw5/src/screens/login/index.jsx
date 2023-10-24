@@ -6,39 +6,34 @@ import { GET_TOKEN } from "../../gql/index.jsx";
 
 import { useNavigate } from "react-router-dom";
 
-
-
 const Login = () => {
-    const [fetchAuth, { data }] = useLazyQuery(GET_TOKEN);
-    const dispatch = useDispatch();
     const [userInfo, setUserInfo] = useState({
         login:'',
         password:'',
     })
+    const [fetchAuth, { data }] = useLazyQuery(GET_TOKEN);
+    const dispatch = useDispatch();
+    
     const navigate = useNavigate();
     useEffect(() =>{
-        // console.log(data);
         if (data) {
-            dispatch(setUserTokenAC(data.login))
+            dispatch(setUserTokenAC(data.login, userInfo.login));
             if(data.login) {
-                console.log('Token is:', data.login)
+                // console.log('login Ok');
                 navigate('/loginOk')
             } 
         }
-    }, [data, dispatch, navigate])
+    }, [data, dispatch, navigate, userInfo])
 
     const handleUpdateLogin = (e) => {
-        // console.log(e.target.value)
         setUserInfo({...userInfo, login: e.target.value})
     }
 
     const handleUpdatePassword = (e) => {
-        
         setUserInfo({...userInfo, password: e.target.value})
     }
 
     const handleGetToken = () => {
-        console.log("getToken trying");
         fetchAuth({
             variables: {login: userInfo.login, password: userInfo.password},
         });
@@ -46,6 +41,7 @@ const Login = () => {
 
     return (
         <div className="container">
+            <h1>Пытаемся залогиниться!</h1>
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <input type='text' value = {userInfo.login} onChange={handleUpdateLogin}/>
                 <input type='text' value = {userInfo.password} onChange={handleUpdatePassword}/>

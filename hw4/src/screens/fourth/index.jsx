@@ -1,6 +1,6 @@
 const FourthComponent = () => {
     return (
-        <div>
+        <div style={{height: "87vh"}}>
             Какой-то четвертый экран
         </div>
     )

@@ -1,15 +1,14 @@
 import { gql } from '@apollo/client'
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink, from } from '@apollo/client';
+
 const GQL_SERVER_URL='http://shop-roles.node.ed.asmer.org.ua/graphql'
-
-
 const httpLink = new HttpLink({
     uri: GQL_SERVER_URL,
   });
 
 
 export const client = new ApolloClient({
-    link: httpLink,
+    link: from ([httpLink]),
     cache: new InMemoryCache(),
 });
 

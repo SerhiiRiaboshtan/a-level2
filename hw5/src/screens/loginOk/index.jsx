@@ -1,7 +1,7 @@
-import { useLazyQuery } from "@apollo/client";
-import { useEffect } from "react";
+import { gql } from "@apollo/client";
+// import { useEffect } from "react";
 import { client } from "../../gql";
-import { GET_USER_INFO } from "../../gql";
+// import { GET_USER_INFO } from "../../gql";
 import { store } from "../..";
 
 const LoginOk = () => {
@@ -24,11 +24,24 @@ const LoginOk = () => {
         //         headers: `bearer ${store.getState().user.token}`,
         //     },
         // });
+        const customHeaders = {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          };
+       
         client.query({
-          query: GET_USER_INFO,
+          query: gql`
+          query userFind($testUser: String) {
+              UserFindOne(query: $testUser) {
+                _id
+                createdAt
+                login
+                nick
+                acl
+              }
+          }`,
           variables: {testUser: store.getState().user.login},
           context: {
-            headers: 'bearer '+store.getState().user.token,
+            headers: customHeaders,
           },
         })
         .then((result) => {

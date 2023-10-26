@@ -15,17 +15,13 @@ import FourthComponent from './screens/fourth';
 import FifthComponent from './screens/fifth';
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route element = {<Layout/>} errorElement = {<ErrorPage/>}>
-      <Route path="/" element = {<MainPage/>}/>
-      <Route path="/contacts">  
-        <Route path=":contactID" element = {<ContactsPage/>}/>
-        <Route path="" element = {<ContactsPage/>}/>
-       </Route>
-      <Route path="/third" element = {<ThirdComponent/>}/>
-      <Route path="/fourth" element = {<FourthComponent/>}/>
-      <Route path="/fifth" element = {<FifthComponent/>}/>
-
-  </Route>
+    <Route path="/" element = {<Layout/>} errorElement = {<ErrorPage/>}>
+        <Route path="/mainpage" element = {<MainPage/>}/>
+        <Route path="/contacts/*" element = {<ContactsPage/>}/>  
+        <Route path="/third" element = {<ThirdComponent/>}/>
+        <Route path="/fourth" element = {<FourthComponent/>}/>
+        <Route path="/fifth" element = {<FifthComponent/>}/>
+    </Route>
 ))
 const App = () =><RouterProvider router={router}/>
 

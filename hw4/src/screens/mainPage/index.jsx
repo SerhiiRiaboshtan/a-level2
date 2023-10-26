@@ -1,6 +1,6 @@
 const MainPage = () => {
     return (
-        <div>
+        <div  style={{height: "87vh"}}>
             MainPage
         </div>
     )

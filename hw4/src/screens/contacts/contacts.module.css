@@ -1,0 +1,18 @@
+.mainContacts {
+    display: flex;
+    justify-content: center;
+    width:100%;
+    height: 87vh;
+}
+.mainContacts li {
+    list-style: none;
+}
+.parentContacts {
+    width: 20%;
+    background-color: lightgray;
+}
+.childrenContacts {
+    width: 80%;
+    text-align: center;
+    background-color: darkgray;
+}

@@ -42,9 +42,9 @@ const Login = () => {
     return (
         <div className="container">
             <h1>Пытаемся залогиниться!</h1>
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-                <input type='text' value = {userInfo.login} onChange={handleUpdateLogin}/>
-                <input type='text' value = {userInfo.password} onChange={handleUpdatePassword}/>
+            <div style={{width:200}}>
+                <label>Логин:<input type='text' value = {userInfo.login} onChange={handleUpdateLogin}/></label>
+                <label>Пароль:<input type='password' value = {userInfo.password} onChange={handleUpdatePassword}/></label>
             </div>
             <button onClick={handleGetToken}>Войти</button>
         </div>

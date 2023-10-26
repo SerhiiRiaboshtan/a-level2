@@ -5,7 +5,7 @@ const Navigation = () => {
     return (
         <ul className = {styles.classNavigation}>
             <li className={styles.classNavigationLi}>
-                <Link to={'/'}>MainPage</Link>
+                <Link to={'/mainpage'}>MainPage</Link>
             </li>
             <li className={styles.classNavigationLi}>
                 <Link to={'/contacts'}>Contacs</Link>

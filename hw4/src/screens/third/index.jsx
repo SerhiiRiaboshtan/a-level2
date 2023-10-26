@@ -1,6 +1,6 @@
 const ThirdComponent = () => {
     return (
-        <div>
+        <div style={{height: "87vh"}}>
             Какой-то третий экран
         </div>
     )

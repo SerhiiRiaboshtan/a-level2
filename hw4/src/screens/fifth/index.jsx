@@ -1,6 +1,6 @@
 const FifthComponent = () => {
     return (
-        <div>
+        <div style={{height: "87vh"}}> 
             Какой-то пятый экран
         </div>
     )

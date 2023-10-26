@@ -2,7 +2,8 @@
     display: flex;
     justify-content: center;
     list-style: none;
-    background-color: grey;
+    background-color: lightgrey;
+    font-weight: bolder;
     margin: 0;
     padding: 10px;
 }

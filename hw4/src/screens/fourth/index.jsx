@@ -1,7 +1,10 @@
+import Clock from '../../components/clock'
+
 const FourthComponent = () => {
     return (
         <div style={{height: "87vh"}}>
-            Какой-то четвертый экран
+            Часики
+            <Clock/>
         </div>
     )
 }

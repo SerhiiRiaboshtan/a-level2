@@ -11,10 +11,10 @@ const Navigation = () => {
                 <Link to={'/contacts'}>Contacs</Link>
             </li> 
             <li className={styles.classNavigationLi}>
-                <Link to={'/third'}>Third</Link>
+                <Link to={'/third'}>Секундомер</Link>
             </li>
             <li className={styles.classNavigationLi}>
-                <Link to={'/fourth'}>Fourth</Link>
+                <Link to={'/fourth'}>Часики</Link>
             </li>
             <li className={styles.classNavigationLi}>
                 <Link to={'/fifth'}>Fifth</Link>

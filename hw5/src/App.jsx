@@ -10,6 +10,7 @@ import ErrorPage from './screens/errorPage';
 import MainPage from './screens/mainPage';
 import LoginOk from "./screens/loginOk";
 import Login from './screens/login';
+import Category from "./screens/category";
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="/" element = {<MainPage/>}/>
       <Route path="/login" element = {<Login/>}/>  
       <Route path="/loginOk" element = {<LoginOk/>}/>
+      <Route path="/category" element = {<Category/>}/>
   </Route>
 ))
 

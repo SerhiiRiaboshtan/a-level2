@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 // import { useEffect } from "react";
+// import { useLazyQuery } from "@apollo/client";
 import { client } from "../../gql";
 // import { GET_USER_INFO } from "../../gql";
 import { store } from "../..";
@@ -10,28 +11,26 @@ const LoginOk = () => {
     //     if (data) {
     //         console.log('User data in LoginOk is Ok:', data)
     //     }
-    //     else {
-    //         console.log('Data отсутствует :', data)
-    //     }
+    //     // else {
+    //     //     console.log('Data отсутствует :', data)
+    //     // }
     // }, [data])
-    
-    
+        
     const handleGetUserData = () => {
         console.log('Пытаемся получить данные пользователя: ', store.getState().user.login);
         // fetchAuth({
-        //     variables: {testUser: store.getState().user.login},
+        //     variables: {testUser: `${JSON.stringify([{login: store.getState().user.login}])}`},
         //     context: {
-        //         headers: `bearer ${store.getState().user.token}`,
-        //     },
-        // });
-        const customHeaders = {
-            Authorization: `Bearer ${store.getState().user.token}`,
-          };
+        //         headers: {
+        //           Authorization: `Bearer ${store.getState().user.token}`,
+        //           },
+        //      },
+        //  });
        
         client.query({
           query: gql`
           query userFind($testUser: String) {
-              UserFindOne(query: $testUser) {
+              UserFind(query: $testUser) {
                 _id
                 createdAt
                 login
@@ -39,9 +38,11 @@ const LoginOk = () => {
                 acl
               }
           }`,
-          variables: {testUser: store.getState().user.login},
+          variables: {testUser: `${JSON.stringify([{login: store.getState().user.login}])}`},
           context: {
-            headers: customHeaders,
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            }
           },
         })
         .then((result) => {

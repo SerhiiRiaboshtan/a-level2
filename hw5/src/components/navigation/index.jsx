@@ -10,9 +10,9 @@ const Navigation = () => {
             <li className={styles.classNavigationLi}>
                 <Link to={'/login'}>Логин</Link>
             </li> 
-            {/* <li className={styles.classNavigationLi}>
-                <Link to={'/loginOk'}>Third</Link>
-            </li> */}
+            <li className={styles.classNavigationLi}>
+                <Link to={'/category'}>Category</Link>
+            </li>
         </ul>
     )
 }

@@ -1,10 +1,10 @@
-// import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
   createRoutesFromElements,
   Route
 } from "react-router-dom";
+
 import Layout from './components/layout';
 import ErrorPage from './screens/errorPage';
 import MainPage from './screens/mainPage';

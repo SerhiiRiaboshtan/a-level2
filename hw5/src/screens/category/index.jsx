@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 import { client } from "../../gql";
 import { useState } from "react";
 // import { store } from "../..";
-import CategoryDraw from "./categoryDraw";
+import CategoryDraw2 from "./categoryDraw2";
 const Category = () =>{
     const[category, setCategory]=useState([]);
     const handleGetCategory = () => {
@@ -17,24 +17,28 @@ const Category = () =>{
                     name
                   },
                   subCategories{
+                    _id,
                     name,
                     parent{
                         _id,
                         name
                     },
                     subCategories{
+                        _id,
                         name,
                         parent{
                             _id,
                             name
                         },
                         subCategories{
+                            _id,
                             name,
                             parent{
                                 _id,
                                 name
                             },
                             subCategories{
+                                _id,
                                 name,
                                 parent{
                                     _id,
@@ -49,10 +53,7 @@ const Category = () =>{
             variables: {q:"[{\"parent\":null}]"}
           })
           .then((result) => {
-            //   console.log(result.data.CategoryFind)
               setCategory([...result.data.CategoryFind]);
-            //   console.log('data=>',result.data.CategoryFind);
-            //    console.log(category);
           })
           .catch((error) => {
               console.log('Error GET_ROOT_CATS', error)
@@ -63,8 +64,8 @@ const Category = () =>{
             <div>
                 <h2>Category</h2>
             </div>
-            <button onClick={handleGetCategory}>Данные</button>
-            <CategoryDraw props={category} />
+            <button onClick={handleGetCategory}>Получить список категорий товаров</button>
+            <CategoryDraw2 category={category} />
         </div>
     )
 }

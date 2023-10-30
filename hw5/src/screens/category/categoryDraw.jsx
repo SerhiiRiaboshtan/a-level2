@@ -1,7 +1,7 @@
 const CategoryDraw = (category) => {
+    // console.log('CategoryDraw=>',category);
     if(category.props.length) console.log('CategoryDraw.props =>',category.props, 'CategoryDraw.props.length=>',category.props.length);
     const listCategory= category.props.map((prop) => {
-        // console.log(prop.subCategories);
         function getSubcategories (category) {
             if(category.subCategories && category.subCategories.length) {
                 console.log('Идем глубже ->', category.name);
@@ -9,6 +9,11 @@ const CategoryDraw = (category) => {
             }
             else {
                 console.log('Некуда идти глубже ->', category.name);
+                return (
+                    <li key={category._id}>
+                        {category.name}
+                    </li>
+                )
             }
         }
         getSubcategories(prop);
@@ -34,8 +39,7 @@ const CategoryDraw = (category) => {
     return (
         <>
             <div>CategoryDraw</div>
-            <ul>{listCategory}</ul>    
-            
+            <ul>{listCategory}</ul>             
         </>    
         
     )

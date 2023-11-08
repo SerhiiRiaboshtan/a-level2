@@ -1,0 +1,30 @@
+.mainContacts {
+    display: flex;
+    flex-direction: column;
+    margin:0;
+    width:80vw;
+    height: 88vh;
+    
+}
+.mainContacts li {
+    list-style: none;
+}
+.mainContacts ul {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin:0;
+
+}
+.parentContacts {
+    width: 100%;
+    background-color: lightgray;
+}
+.childrenContacts {
+    width: 100%;
+    height:85vh;
+    text-align: center;
+    background-color: darkgray;
+    border: 1px solid black;
+}

@@ -1,11 +1,16 @@
 import { gql } from "@apollo/client";
 import { client } from "../../gql";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { store } from "../..";
-import CategoryDraw2 from "./categoryDraw2";
+// import CategoryDraw2 from "./categoryDraw2";
+import CategoryDraw3 from "./categoryDraw3";
+
 const Category = () =>{
     const[category, setCategory]=useState([]);
-    const handleGetCategory = () => {
+    useEffect(() =>{
+        handleGetCategory();
+    }, [])
+    function handleGetCategory() {
         client.query({
             query: gql`
             query rootCats($q: String) {
@@ -64,8 +69,9 @@ const Category = () =>{
             <div>
                 <h2>Category</h2>
             </div>
-            <button onClick={handleGetCategory}>Получить список категорий товаров</button>
-            <CategoryDraw2 category={category} />
+            {/* <button onClick={handleGetCategory}>Получить список категорий товаров</button> */}
+            {/* <div><CategoryDraw2 category={category} /></div> */}
+            <div><CategoryDraw3 category={category}/></div>
         </div>
     )
 }

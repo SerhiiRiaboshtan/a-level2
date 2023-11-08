@@ -1,0 +1,22 @@
+.classNavigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    background-color: grey;
+    margin: 5px;
+    padding: 0px;
+    height: 5vh;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.classNavigationLi {
+    width: 100px;
+}
+
+.classNavigationLi >a {
+    text-decoration: none;
+} 
+

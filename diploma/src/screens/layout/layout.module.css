@@ -1,0 +1,15 @@
+.container{
+    height: 100vh;
+    overflow: hidden;
+}
+.centralContainer {
+    display: flex;
+    margin:5px;
+}
+
+.outletContainer {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    
+}

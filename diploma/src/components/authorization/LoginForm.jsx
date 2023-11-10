@@ -3,10 +3,15 @@ import { useState } from "react";
 import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
 import styles from "./authorization.module.css";
 import { useNavigate } from "react-router-dom";
+import { store } from "../../";
+import { useDispatch } from "react-redux";
+import { actionLogin } from "../redux/reducers/authReducer";
 
 function LoginForm() {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({login:'', password:''});
+  
+  const dispatch = useDispatch();
   
   const handleChangeLogin = event => {
     setInputValue({...inputValue, login:event.target.value});
@@ -19,6 +24,9 @@ function LoginForm() {
   const handleSubmit = event => {
     event.preventDefault();
     console.log('Submit data->', inputValue);
+    console.log("Store.state->", store.getState());
+    dispatch(actionLogin(inputValue.login, inputValue.password));
+
   }
 
   return (

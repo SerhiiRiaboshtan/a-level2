@@ -1,0 +1,6 @@
+
+.categoryContainer {
+    height: 70vh;
+    overflow-y: auto;
+    text-align: left;
+}

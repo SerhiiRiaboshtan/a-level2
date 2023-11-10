@@ -1,15 +1,22 @@
+.classNavigationContainer {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: grey;
+    margin: 5px;
+    padding-right: 5px;
+    /* height: 5vh; */
+    align-items: center;
+    justify-content: space-between;
+}
 .classNavigation {
     display: flex;
     justify-content: center;
     align-items: center;
     list-style: none;
-    background-color: grey;
-    margin: 5px;
-    padding: 0px;
-    height: 5vh;
     text-align: center;
-    border: 1px solid black;
-    border-radius: 5px;
+    
 }
 
 .classNavigationLi {

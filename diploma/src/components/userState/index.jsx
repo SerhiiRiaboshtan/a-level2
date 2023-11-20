@@ -1,7 +1,10 @@
+import UserIsAuthorized from "./UserIsAuthorized";
+import styles from "./userState.module.css"
+
 const UserState = () => {
     return(   
-        <div>
-            Чё за пользователь
+        <div className={styles.classUserState}>
+            <UserIsAuthorized userName={"UserName"}/>
         </div>
     ) 
 }

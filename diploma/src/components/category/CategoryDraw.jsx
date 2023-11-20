@@ -12,12 +12,40 @@ function Category ({category}) {
     const handlerClick = () => {
         console.log('id in Category=>',closuresData.id ,'category.name in Category=>',closuresData.name);
     }
+    function dragStartHandler(e) {
+        console.log('dragStart')
+    }
+    
+    function dragEndHandler(e) {
+        console.log('dragEnd')
+    }
+    
+    function dragOverHandler(e) {
+        console.log('dragOver')
+    }
+    
+    function dropHandler(e) {
+        console.log('drop')
+    }
+
+
     return (
         <>
-            <TreeItem nodeId={category._id} label={category.name} onClick={handlerClick}>
+            <TreeItem nodeId={category._id} label={category.name} onClick={handlerClick} >
                 {category.subCategories && category.subCategories.length>0 && 
-                    (<div>{category.subCategories.map((child) => 
-                        <Category key={child._id} category={child}/>)}
+                    (<div>
+                        {category.subCategories.map((child) => 
+                            <Category 
+                                key={child._id} 
+                                category={child}
+                                draggable={true}
+                                onDragStart={(e)=>dragStartHandler(e)}
+                                onDragLeave={(e)=>dragEndHandler(e)}
+                                onDragEnd={(e)=>dragEndHandler(e)}
+                                onDragOver={(e)=>dragOverHandler(e)}
+                                onDrop={(e)=>dropHandler(e)}
+                            />)
+                        }
                     </div>)
                 }
             </TreeItem>

@@ -1,22 +1,37 @@
-function authReducer(state={}, {type, token}){
-    if(type==='AUTH_LOGIN'){
-        const payload=(token);//jwtDecode
-        if(payload){
-            return {token, payload};
+import { createSlice } from '@reduxjs/toolkit';
+
+import { jwtDecode} from "../../../utils";
+import { api } from '../../rtkQuery';
+
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: {token: null, payload: null},
+    reducers: {
+        login(state, {payload:token}){
+            // console.log('LOGIN', state, token)
+            const payload = jwtDecode(token)
+            if (payload){
+                state.payload = payload
+                state.token   = token
+            }
+            // return {payload, token}
+        },
+        logout(state){
+            // console.log('LOGOUT', state)
+            state.payload = null
+            state.token   = null
         }
     }
-    if(type==='AUTH_LOGOUT'){
-        return {};
+})
+export const actionAuthLogin  = token => ({type: 'AUTH_LOGIN', token});
+export const actionAuthLogout = ()    => ({type: 'AUTH_LOGOUT'});
+
+export const actionFullLogin = (login, password) =>
+    async dispatch => {
+        const token = await dispatch(api.endpoints.login.initiate({login, password}))       
+        console.log(token)
+        if (token?.data?.login){
+            dispatch(authSlice.actions.login(token.data.login))
+        }
     }
-    return state;
-}
-
-export default authReducer;
-
-// const actionAuthLogin  = token => ({type: 'AUTH_LOGIN', token});
-// const actionAuthLogout = ()    => ({type: 'AUTH_LOGOUT'});
-
-export const actionLogin =(login, password) => ({
-    type : 'AUTH_LOGIN',
-    payload : {login, password},
-});
+export default authSlice;

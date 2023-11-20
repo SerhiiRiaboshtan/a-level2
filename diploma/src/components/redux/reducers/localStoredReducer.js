@@ -8,7 +8,7 @@ function localStoredReducer(originalReducer, localStorageKey){
             }    
         }
         const stateNew=originalReducer(state, action);
-        console.log('stateNew->',stateNew);
+        console.log('LocalStoredReducer stateNew->',stateNew);
         localStorage[localStorageKey]=JSON.stringify(stateNew);
         return stateNew;
     }

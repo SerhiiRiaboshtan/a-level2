@@ -1,4 +1,4 @@
-function cartReducer(state={}, {type, count, good}){
+export const cartReducer = (state={}, {type, count, good}) => {
     let newState={...state};
     if(type==='CART_ADD' && count>0){
         if(newState[good._id]){
@@ -45,4 +45,3 @@ export const actionCartDel = (good) => ({type: 'CART_DEL', good});
 export const actionCartSet = (good, count=1) => ({type: 'CART_SET', count, good});
 export const actionCartClear = () => ({type: 'CART_CLEAR'});
 
-export default cartReducer

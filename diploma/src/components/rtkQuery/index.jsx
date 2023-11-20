@@ -5,6 +5,15 @@ import { useState } from 'react';
 export const api = createApi({
     baseQuery: graphqlRequestBaseQuery({
         url: 'http://shop-roles.node.ed.asmer.org.ua/graphql',
+        // prepareHeaders(headers, {getState}){
+        //     const { token } = getState().auth
+        //     console.log('TOKEN', token)
+        //     if (token){
+        //         headers.set('Authorization', "Bearer " + token)
+        //     }
+        //     // console.log(getState().auth)
+        //     return headers
+        // }
     }),
     endpoints: (builder) => ({
         getRootCats:builder.query({

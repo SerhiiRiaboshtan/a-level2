@@ -19,18 +19,7 @@ export function recallDate(timeStamp){
     return (d.getDate()<10?'0'+d.getDate():d.getDate())+'.'+(d.getMonth()<9?('0'+(d.getMonth()+1)):(d.getMonth()+1))+'.'+d.getFullYear()+'   '+(d.getHours()<10?'0'+d.getHours():d.getHours())+':'+(d.getMinutes()<10?'0'+d.getMinutes():d.getMinutes());
 }
 
-export function jwtDecode(token){
-    let arr=[];
-    if(typeof(token)!=="string")  return undefined;
-    arr=token.split('.');
-    if(arr.length!==3) return undefined;
-    try{
-        return JSON.parse(atob(arr[1]));
-    }
-    catch{
-        return undefined;
-    } 
-}
+
 export const gql=getGql("http://shop-roles.node.ed.asmer.org.ua/graphql");
 function getGql (endpoint){
     return function gql(query, variables={}){

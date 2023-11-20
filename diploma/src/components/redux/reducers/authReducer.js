@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-import { jwtDecode} from "../../../utils";
+import { jwtDecode} from "../../../utils/jwtDecode";
 import { api } from '../../rtkQuery';
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
     name: 'auth',
     initialState: {token: null, payload: null},
     reducers: {
@@ -34,4 +33,3 @@ export const actionFullLogin = (login, password) =>
             dispatch(authSlice.actions.login(token.data.login))
         }
     }
-export default authSlice;

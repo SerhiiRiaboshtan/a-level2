@@ -2,12 +2,14 @@ import {configureStore } from '@reduxjs/toolkit';
 import { api } from '../rtkQuery';
 
 import { authSlice } from './reducers/authReducer';
-import { cartReducer } from './reducers/cartReducer';
+import { cartSlice } from './reducers/cartReducer';
+import { catSlice } from './reducers/categoryReducer';
 
 export const store = configureStore({
     reducer: {  
                 [authSlice.name]: authSlice.reducer,
-                cartReducer,
+                [catSlice.name]: catSlice.reducer,
+                [cartSlice.name]: cartSlice.reducer,
                 [api.reducerPath]: api.reducer,
              },
     middleware: (getDefaultMiddleware) =>

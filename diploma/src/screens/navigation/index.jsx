@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
+
 import styles from './navigation.module.css'
-import UserState from '../../components/userState'
-import {CartTopView} from '../../components/cart'
+import UserStateOnScreen from '../../components/userState'
+import { CartTopViewOnScreen } from '../../components/cart/CartTopView'
 
 const Navigation = () => {
     return (
@@ -13,22 +14,13 @@ const Navigation = () => {
                 <li className={styles.classNavigationLi}>
                     <Link to={'/contacts'}>Contacs</Link>
                 </li> 
-                <li className={styles.classNavigationLi}>
-                    <Link to={'/third'}>Секундомер</Link>
-                </li>
-                <li className={styles.classNavigationLi}>
-                    <Link to={'/fourth'}>Тест меню</Link>
-                </li>
-                <li className={styles.classNavigationLi}>
-                    <Link to={'/login'}>LOGIN</Link>
-                </li>
             </ul>
             
-            <div className='userState'>
-                <UserState/>
+            <div className='userStateOnScreen'>
+                <UserStateOnScreen/>
             </div>
             <div>
-                <CartTopView/>
+                <CartTopViewOnScreen/>
             </div>
         </div>
     )

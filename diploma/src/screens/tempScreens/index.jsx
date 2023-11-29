@@ -3,13 +3,12 @@ import { useDispatch, connect } from 'react-redux';
 // import { api } from '../../components/rtkQuery/index.jsx';
 import { store } from '../../components/redux';
 import { actionFullLogin, actionLogout } from '../../components/redux/reducers/authReducer.js';
-// import { store } from '../../components/redux';
 import styles from './tempScreens.module.css';
 
 export const LoginFormTest = () => {
-    const dispatch = useDispatch()
-    const [login, setLogin] = useState('')
-    const [password, setPassword] = useState('')
+    const dispatch = useDispatch();
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
     // console.log('LOGIN FORM isLoading->', isLoading, " data->", data);
     return (
         <div className={styles.container}>
@@ -31,11 +30,6 @@ export const LoginFormTest = () => {
 }
 
 const UserInfo = ({login}) => {
-    // const dispatch = useDispatch();
-    // console.log('User->', data?data.sub.login:"No user");
-    console.log("data->", login);
-
-    
     return (
         <div>
             User info
@@ -58,3 +52,46 @@ const mapStateToPropsUserInfo = (state) => {
     else return {login: null}
 }
 const CUserInfo = connect( mapStateToPropsUserInfo )( UserInfo )
+
+export const FileUpload = () => {
+    const [formData, setFormData] = useState({
+        action: "/upload",
+        method: "post",
+        enctype: "multipart/form-data",
+        id: "form",
+    });
+    const handleInputChange = (e) => {
+        const { name, files } = e.target;
+        setFormData({
+            ...formData,
+            [name]: files[0],
+        });
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formDataObject = new FormData();
+        for (const key in formData) {
+            formDataObject.append(key, formData[key]);
+        }
+        fetch('http://shop-roles.node.ed.asmer.org.ua/upload', {
+                        method: "POST",
+                        headers: store.getState().auth.token ? {Authorization: 'Bearer ' + store.getState().auth.token} : {},
+                        body: formDataObject,
+                    })
+                    .then(res => res.json())
+                    .then(json => console.log('UPLOAD RESULT', json))
+        }
+
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    File:
+                    <input type="file" name="photo" id='photo' onChange={handleInputChange}/>
+                    <button type="submit">Submit</button>
+                </label>
+            </form>
+            <img src="http://shop-roles.node.ed.asmer.org.ua/images/4fce223a90a98741ec52b8cd1cb8da73" alt="" />
+        </>
+    )
+}

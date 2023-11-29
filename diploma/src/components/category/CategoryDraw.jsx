@@ -1,33 +1,23 @@
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
+
 import styles from './category.module.css';
+import { actionSetCurrent } from '../redux/reducers/categoryReducer';
 
 function Category ({category}) {
-    // console.log('category._id in Category=>',category._id,'category.name in Category=>',category.name );
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     let closuresData ={id:category._id, name:category.name};
     const handlerClick = () => {
-        console.log('id in Category=>',closuresData.id ,'category.name in Category=>',closuresData.name);
+        dispatch(actionSetCurrent(closuresData.id));
+        navigate(`/category/${closuresData.id}`);
     }
-    function dragStartHandler(e) {
-        console.log('dragStart')
-    }
-    
-    function dragEndHandler(e) {
-        console.log('dragEnd')
-    }
-    
-    function dragOverHandler(e) {
-        console.log('dragOver')
-    }
-    
-    function dropHandler(e) {
-        console.log('drop')
-    }
-
 
     return (
         <>
@@ -38,12 +28,6 @@ function Category ({category}) {
                             <Category 
                                 key={child._id} 
                                 category={child}
-                                draggable={true}
-                                onDragStart={(e)=>dragStartHandler(e)}
-                                onDragLeave={(e)=>dragEndHandler(e)}
-                                onDragEnd={(e)=>dragEndHandler(e)}
-                                onDragOver={(e)=>dragOverHandler(e)}
-                                onDrop={(e)=>dropHandler(e)}
                             />)
                         }
                     </div>)

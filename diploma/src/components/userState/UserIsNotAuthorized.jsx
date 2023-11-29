@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+
 import Box from "@mui/material/Box";
 import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
@@ -11,10 +13,6 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import LoginIcon from "@mui/icons-material/Logout";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
-const data = [
-  { icon: <LoginIcon />, label: "Войти", callBack:()=>alert("Войти") },
-  { icon: <PersonAddIcon />, label: "Регистрация", callBack:()=>alert("Регистрация") },
-]; 
 
 const FireNav = styled(List)({
   "& .MuiListItemButton-root": {
@@ -31,7 +29,20 @@ const FireNav = styled(List)({
 });
 
 function UserIsNotAuthorized() {
-  const [open, setOpen] = React.useState(true);
+  const navigate = useNavigate();
+  const data = [
+    { 
+      icon: <LoginIcon />, 
+      label: "Войти", 
+      callBack:()=>navigate('/user/login') 
+    },
+    { 
+      icon: <PersonAddIcon />,
+      label: "Регистрация",
+      callBack:()=>navigate('/user/registration')
+    },
+  ]; 
+  const [open, setOpen] = React.useState(false);
   return (
     <Box sx={{ display: "flex" }}>
       <ThemeProvider
@@ -100,7 +111,7 @@ function UserIsNotAuthorized() {
                   <ListItemButton
                     key={item.label}
                     sx={{ py: 0, minHeight: 32, color: "rgba(255,255,255,.8)" }}
-                    onClick={() => item.callBack()}
+                    onClick={() => { setOpen(false); item.callBack() }}
                   >
                     <ListItemIcon sx={{ color: "inherit" }}>
                       {item.icon}

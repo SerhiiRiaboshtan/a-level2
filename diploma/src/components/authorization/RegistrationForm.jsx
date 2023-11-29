@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
+
 import styles from "./authorization.module.css";
+import { actionFullRegistration } from "../redux/reducers/authReducer";
 
 const RegistrationForm = () => {
-  const [inputValue, setInputValue] = useState({login:'', password:'', newNickname:''});
-
+  const [inputValue, setInputValue] = useState({login:'', password:'', nickName:''});
+  const dispatch = useDispatch();
   const handleChangeLogin = event => {
     setInputValue({...inputValue, login:event.target.value});
   }
@@ -20,7 +24,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log('Submit', inputValue);
+    dispatch(actionFullRegistration({'login': inputValue.login, 'password': inputValue.password}));
   }
 
   return (

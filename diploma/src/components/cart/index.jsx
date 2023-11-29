@@ -1,2 +1,2 @@
 export { CartView } from "./CartView";
-export { CartTopView } from "./CartTopView";
+export { CartTopViewOnScreen } from "./CartTopView";

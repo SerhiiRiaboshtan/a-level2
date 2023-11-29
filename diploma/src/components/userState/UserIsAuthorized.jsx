@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+
 import Box from "@mui/material/Box";
 import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
@@ -11,12 +14,10 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-const data = [
-  { icon: <ManageAccountsIcon />, label: "Профиль", callBack:()=>alert("Профиль") },
-  { icon: <WorkHistoryIcon />, label: "История заказов", callBack:()=>alert("История заказов") },
-  { icon: <LogoutIcon />, label: "Выйти", callBack:()=>alert("Выйти") }
-];
+import { actionLogout } from "../redux/reducers/authReducer";
 
 const FireNav = styled(List)({
   "& .MuiListItemButton-root": {
@@ -32,8 +33,40 @@ const FireNav = styled(List)({
   }
 });
 
-function UserIsAuthorized({ userName }) {
+function UserIsAuthorized({ userName, userAdmin }) {
+  console.log('userName->', userName, '  userAdmin->', userAdmin)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const data = [
+    {
+      icon: <ShoppingCartIcon />,
+      label: "Корзина",
+      callBack:()=>navigate('/user/cart')
+    },
+    {
+      icon: <WorkHistoryIcon />,
+      label: "История заказов",
+      callBack:()=>navigate('/user/ordershistory')
+    },
+    { 
+      icon: <ManageAccountsIcon />,
+      label: "Профиль",
+      callBack:()=>navigate('/user/profile') 
+    },
+    { 
+      icon: <LogoutIcon />,
+      label: "Выйти",
+      callBack:()=>dispatch(actionLogout()) 
+    },
+    
+  ];
+  userAdmin && data.push({ 
+      icon: <SupervisorAccountIcon />,
+      label: "Администрирование",
+      callBack:()=>alert('Типа входим в админку') 
+    });
   const [open, setOpen] = React.useState(false);
+ 
   return (
     <Box sx={{ display: "flex" }}>
       <ThemeProvider
@@ -103,7 +136,7 @@ function UserIsAuthorized({ userName }) {
                   <ListItemButton
                     key={item.label}
                     sx={{ py: 0, minHeight: 32, color: "rgba(255,255,255,.8)" }}
-                    onClick={() => item.callBack()}
+                    onClick={() => { setOpen(false); item.callBack()}}
                   >
                     <ListItemIcon sx={{ color: "inherit" }}>
                       {item.icon}

@@ -5,11 +5,14 @@
 .centralContainer {
     display: flex;
     margin:5px;
+    overflow-y: visible;
+
 }
 
 .outletContainer {
     display: flex;
     flex: 1;
+    justify-content: center;
     align-items: center;
-    
+    flex-wrap: wrap;
 }

@@ -1,17 +1,16 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
 import styles from "./authorization.module.css";
-import { useNavigate } from "react-router-dom";
-// import  store  from "../redux/index";
-import { useDispatch } from "react-redux";
+
 import { actionFullLogin } from "../redux/reducers/authReducer";
 
 function LoginForm() {
   const navigate = useNavigate();
-  const [inputValue, setInputValue] = useState({login:'', password:''});
-  
   const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState({login:'', password:''});
   
   const handleChangeLogin = event => {
     setInputValue({...inputValue, login:event.target.value});
@@ -23,10 +22,7 @@ function LoginForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // console.log('Submit data->', inputValue);
-    // console.log("Store.state->", store.getState());
-    dispatch(actionFullLogin(inputValue.login, inputValue.password));
-
+    dispatch(actionFullLogin({'login': inputValue.login, 'password': inputValue.password}));
   }
 
   return (

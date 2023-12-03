@@ -36,7 +36,7 @@ export const api = createApi({
                 document: 
                     `   mutation newUser($login: String, $password: String) {
                             UserUpsert(user: {login: $login, password: $password}){
-                                _id login
+                                _id login 
                             } 
                         }
                     `,
@@ -46,7 +46,7 @@ export const api = createApi({
             query: ({_id}) => ({
                 document: `query oneUser($userID: String){
                     UserFindOne(query: $userID){
-                        _id login nick avatar{ url }
+                        _id login nick acl avatar{ url }
                     }
                 }`,
                 variables: {userID: JSON.stringify([{_id}])}
@@ -75,6 +75,33 @@ export const api = createApi({
                     }
                 `,
                 variables : {"_id":JSON.stringify([{_id}])}
+            })
+        }),
+        getUserOrder: builder.mutation({ //Получение заказов пользователя по _id
+            query: ({_id}) => ({
+                document:
+            `   
+            query orderFind {
+                OrderFind(query: "[{\\"___owner\\":\\"${_id}\\"}]") {
+                  _id
+                  total
+                  createdAt
+                  orderGoods {
+                    good {
+                      _id
+                      name
+                    }
+                    total
+                    price
+                    count
+                  }
+                  owner{
+                    login
+                  }
+                }
+              }
+            `,
+                variables : {_id}
             })
         }),
     })

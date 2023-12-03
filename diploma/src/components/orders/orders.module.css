@@ -1,0 +1,18 @@
+.ordersContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.ordersView{
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.ordersHeader {
+    max-height: 5 vh;
+    text-align: center;
+}
+
+.oneOrderHeader {
+    text-align: center;
+}

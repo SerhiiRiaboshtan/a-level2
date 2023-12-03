@@ -4,13 +4,14 @@ import { useDispatch } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+// import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import { store } from "../redux";
 import { cartSlice } from '../redux/reducers/cartReducer';
 import noPhoto from '../../img/noPhoto.jpg';
+import { Carousel } from "../carousel/Carousel";
 
 
 const OneGood = ({good, amount}) =>{
@@ -21,14 +22,15 @@ const OneGood = ({good, amount}) =>{
             sx={{ width: 600, minHeight: 600, margin: 1 }}
             style={{display: 'flex', flexDirection: 'column' }}
             >
-            <CardMedia
+            {/* <CardMedia
                 component="img"
                 alt="good foto"
                 height="250"
-                image={good.images.length?`http://shop-roles.node.ed.asmer.org.ua/${good.images[0].url}`:"../../img/noPhoto.jpg"}
+                image={good.images.length?`http://shop-roles.node.ed.asmer.org.ua/${good.images[0].url}`:""}
                 style={{objectFit: 'contain',}}
-                />
-            {!good.images.length && <img src={noPhoto} alt="qq" />}
+            /> */}
+                {good.images.length && <Carousel images = {good.images}/>}
+                {!good.images.length && <img src={noPhoto} alt="qq" />}
             <CardContent style={{height: "300", flex:1, justifyContent: 'center'}}>
                 <Typography gutterBottom variant="h5" component="div" textAlign="center">
                     {good.name}
@@ -43,7 +45,7 @@ const OneGood = ({good, amount}) =>{
                 </Typography>
                 <Button 
                     size="small" 
-                    onClick={() => {dispatch(cartSlice.actions.cartAdd({count:1, 'goodID':good._id, 'goodName':good.name}));}}
+                    onClick={() => {dispatch(cartSlice.actions.cartAdd({count:1, 'good':good}));}}
                 >
                     Добавить в корзину
                 </Button>

@@ -15,6 +15,7 @@ import { cartSlice } from '../redux/reducers/cartReducer';
 import noPhoto from '../../img/noPhoto.jpg';
 
 export const GoodCard = ({good}) => {
+    // console.log("good in GoodCart->", good);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -54,7 +55,8 @@ export const GoodCard = ({good}) => {
                 </Typography>
                 <Button 
                     size="small" 
-                    onClick={() => {dispatch(cartSlice.actions.cartAdd({count:1, 'goodID':good._id, 'goodName':good.name}));}}
+                    // onClick={() => {dispatch(cartSlice.actions.cartAdd({count:1, 'goodID':good._id, 'goodName':good.name}));}}
+                    onClick={() => {dispatch(cartSlice.actions.cartAdd({count:1, 'good':good}));}}
                 >
                     Добавить в корзину
                 </Button>

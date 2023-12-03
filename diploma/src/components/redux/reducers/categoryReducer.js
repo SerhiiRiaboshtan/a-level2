@@ -4,7 +4,7 @@ import { api } from '../../rtkQuery';
 
 export const catSlice = createSlice({
     name: 'cat',
-    initialState: {currentCat: null, currentGoods: null, currentGood: null},
+    initialState: {currentCat: null, currentGoods: null, currentGood: null, userOrders:[]},
     reducers: {
         set(state,{payload: id} ){
             if(id){
@@ -20,6 +20,13 @@ export const catSlice = createSlice({
             if(good){
                 state.currentGood = good;
             }
+        },
+        saveUserOrders (state, {payload: orders}){
+            console.log('data in saveUserOrders', orders );
+            state.userOrders = orders;
+        },
+        clear (state) {
+            return {currentCat: null, currentGoods: null, currentGood: null, userOrders:[]}
         }
         
 
@@ -42,4 +49,15 @@ export const actionSetGoodsFromCat = (id) =>
 const actionSaveCategoriesGoods = (goods) => 
     dispatch => {
         dispatch(catSlice.actions.save(goods));
+    }
+
+export const actionGetUserOrders = () => 
+    async (dispatch, getState) => {
+        const {auth} = getState();
+        if (auth.payload){
+            const {id} = auth.payload.sub;
+            const data = await dispatch(api.endpoints.getUserOrder.initiate({_id:id}));
+            // console.log('data in actionGetUserOrders', data.data.OrderFind );
+            dispatch(catSlice.actions.saveUserOrders(data.data.OrderFind));
+        }
     }

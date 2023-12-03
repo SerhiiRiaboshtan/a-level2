@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { jwtDecode} from "../../../utils/jwtDecode";
 import { api } from '../../rtkQuery';
+import { cartSlice } from './cartReducer';
+import { catSlice } from "./categoryReducer";
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -17,18 +19,20 @@ export const authSlice = createSlice({
         logout(state){
             state.payload = null;
             state.token   = null;
-        }
+        },
+        userDetails(state, {payload:{_id, login, nick, acl, avatar}}){
+            console.log("userDetails->", _id, login, nick, acl, avatar);
+            state.payload.sub = {...state.payload.sub, 'nick':nick, 'avatar':avatar};
+        },
     }
 })
 
 export const actionFullLogin = (login, password) =>
     async dispatch => {
-        // console.log('in actionFullLogin: login->', login, ' password->', password);
         const token = await dispatch(api.endpoints.login.initiate(login, password));       
         if (token?.data?.login){
             dispatch(authSlice.actions.login(token.data.login));
-            // await dispatch(actionUserInfo());
-            // console.log('Есть такой пользователь');
+            await dispatch(actionUserInfo());
         }else if (!(token?.data?.login)) {
             alert('Нет такого пользователя и(или) пароля');
         }
@@ -46,20 +50,26 @@ export const actionFullRegistration = (login, password) =>
         } 
         
     }
-// const actionUserInfo = () => 
-//     async (dispatch, getState) => {
-//         const {auth} = getState();
-//         // console.log("auth->", auth);
-//         if (auth.payload){
-//             const {id} = auth.payload.sub;
-//             const {data} = await dispatch(api.endpoints.getUserById.initiate({_id: id}));
-//             console.log("data from actionUserInfo", data);
-//         }
-//     }
+const actionUserInfo = () => 
+    async (dispatch, getState) => {
+        const {auth} = getState();
+        // console.log("auth->", auth);
+        if (auth.payload){
+            const {id} = auth.payload.sub;
+            const {data} = await dispatch(api.endpoints.getUserById.initiate({_id: id}));
+            console.log("data from actionUserInfo", data.UserFindOne);
+            dispatch (authSlice.actions.userDetails(data.UserFindOne));
+        }
+    }
 
 
 export const actionLogout = () => 
     dispatch => {
         dispatch(authSlice.actions.logout());
+        dispatch(cartSlice.actions.cartClear());
+        dispatch(catSlice.actions.clear());
+        
     } 
+
+
     

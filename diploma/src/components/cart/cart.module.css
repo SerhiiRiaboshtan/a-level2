@@ -1,0 +1,15 @@
+.cartTopView {
+    display: flex;
+    align-items: center;
+}
+
+.amountCart {
+    color: white;
+    background-color: grey;
+}
+
+.cartImage {
+    width: 40px;
+    height: 50px;
+    margin-right: -15px;
+}

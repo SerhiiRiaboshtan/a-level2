@@ -16,7 +16,7 @@ const Navigation = () => {
                 </li> 
             </ul>
             
-            <div className='userStateOnScreen'>
+            <div className={styles.userStateOnScreen}>
                 <UserStateOnScreen/>
             </div>
             <div>

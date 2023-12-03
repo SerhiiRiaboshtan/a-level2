@@ -9,7 +9,7 @@
     /* height: 5vh; */
     align-items: flex-start;
     justify-content: space-between;
-    max-height: 50px;
+    max-height: 50px; z-index: 5;
 }
 .classNavigation {
     display: flex;

@@ -4,31 +4,31 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState: {},
     reducers: {
-        cartAdd: (state,{payload: {count, goodID, goodName}}) =>{
+        cartAdd: (state,{payload: {count, good}}) =>{
             if(count>0){    
-                if (!state[goodID]) {
-                    return {...state, ...{[goodID]:{'count':count, name:goodName}}};// 
+                if (!state[good._id]) {
+                    return {...state, ...{[good._id]:{'count':count, "good":good}}};// 
                 }
                 else {
-                    state[goodID] = {...state[goodID], 'count': state[goodID].count+=count};
+                    state[good._id] = {...state[good._id], 'count': state[good._id].count+=count};
                 }
             }
         },
-        cartSub: (state,{payload: {count, goodID}}) =>{
-            if(count>0 && (state[goodID].count-count)){
-                state[goodID] = {...state[goodID], 'count': state[goodID].count-=count};
+        cartSub: (state,{payload: {count, good}}) =>{
+            if(count>0 && (state[good].count-count)){
+                state[good] = {...state[good], 'count': state[good].count-=count};
             }
             else {
-                delete state[goodID];
+                delete state[good];
             }
         },
-        cartDel: (state,{payload: {goodID}}) =>{
-            if(state[goodID]){
-                delete state[goodID];
+        cartDel: (state,{payload: {good}}) =>{
+            if(state[good]){
+                delete state[good];
             }
         },
         cartClear: (state) => {
-            state={};
+            return {}
         }
     }
 })

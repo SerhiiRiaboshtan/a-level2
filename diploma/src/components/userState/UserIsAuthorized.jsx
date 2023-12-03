@@ -18,6 +18,8 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import { actionLogout } from "../redux/reducers/authReducer";
+import { actionGetUserOrders } from "../redux/reducers/categoryReducer";
+import { store } from "../redux/index";
 
 const FireNav = styled(List)({
   "& .MuiListItemButton-root": {
@@ -34,7 +36,7 @@ const FireNav = styled(List)({
 });
 
 function UserIsAuthorized({ userName, userAdmin }) {
-  console.log('userName->', userName, '  userAdmin->', userAdmin)
+  // console.log('userName->', userName, '  userAdmin->', userAdmin)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = [
@@ -46,7 +48,12 @@ function UserIsAuthorized({ userName, userAdmin }) {
     {
       icon: <WorkHistoryIcon />,
       label: "История заказов",
-      callBack:()=>navigate('/user/ordershistory')
+      callBack:()=>{
+        navigate('/user/ordershistory');
+        if(store.getState().auth.token){
+          dispatch(actionGetUserOrders());
+        }    
+      }
     },
     { 
       icon: <ManageAccountsIcon />,
@@ -68,7 +75,7 @@ function UserIsAuthorized({ userName, userAdmin }) {
   const [open, setOpen] = React.useState(false);
  
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex"}}>
       <ThemeProvider
         theme={createTheme({
           components: {

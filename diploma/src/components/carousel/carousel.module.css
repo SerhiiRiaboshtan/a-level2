@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallPictures {
+    display: flex;
+    justify-content: space-around;
+}
+
+.oneSmallPicture {
+    height: 50px;
+    width: 100px;
+    margin: 5px;
+    
+}
+
+.arrowClass {
+   max-width: 25px;
+}

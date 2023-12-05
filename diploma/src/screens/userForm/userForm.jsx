@@ -5,7 +5,7 @@ import LoginForm from "../../components/authorization/LoginForm";
 import RegistrationForm from "../../components/authorization/RegistrationForm";
 import { CartViewOnScreen } from "../../components/cart/CartView";
 import { OrdersViewOnScreen } from "../../components/orders";
-import { ProfileView } from "../../components/profile/ProfileView";
+import { ProfileViewOnScreen } from "../../components/profile/ProfileView";
 
 const UserForm = () => {
     return (
@@ -15,7 +15,7 @@ const UserForm = () => {
                     <Route path="registration" element={<RegistrationForm/>}/>
                     <Route path="cart" element={<CartViewOnScreen/>}/>
                     <Route path="ordershistory" element={<OrdersViewOnScreen/>}/>
-                    <Route path="profile" element={<ProfileView/>}/>
+                    <Route path="profile" element={<ProfileViewOnScreen/>}/>
                     
             </Routes>
             <Outlet/>

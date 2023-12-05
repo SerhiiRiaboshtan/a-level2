@@ -21,7 +21,7 @@ export const authSlice = createSlice({
             state.token   = null;
         },
         userDetails(state, {payload:{_id, login, nick, acl, avatar}}){
-            console.log("userDetails->", _id, login, nick, acl, avatar);
+            // console.log("userDetails->", _id, login, nick, acl, avatar);
             state.payload.sub = {...state.payload.sub, 'nick':nick, 'avatar':avatar};
         },
     }
@@ -57,7 +57,7 @@ const actionUserInfo = () =>
         if (auth.payload){
             const {id} = auth.payload.sub;
             const {data} = await dispatch(api.endpoints.getUserById.initiate({_id: id}));
-            console.log("data from actionUserInfo", data.UserFindOne);
+            // console.log("data from actionUserInfo", data.UserFindOne);
             dispatch (authSlice.actions.userDetails(data.UserFindOne));
         }
     }

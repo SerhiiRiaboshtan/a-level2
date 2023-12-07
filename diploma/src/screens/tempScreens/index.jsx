@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, connect } from 'react-redux';
+import {useDropzone} from 'react-dropzone';
+
 // import { api } from '../../components/rtkQuery/index.jsx';
 import { store } from '../../components/redux';
 import { actionFullLogin, actionLogout } from '../../components/redux/reducers/authReducer.js';
@@ -54,6 +56,12 @@ const mapStateToPropsUserInfo = (state) => {
 const CUserInfo = connect( mapStateToPropsUserInfo )( UserInfo )
 
 export const FileUpload = () => {
+    const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
+    const files = acceptedFiles.map(file => (
+        <li key={file.path}>
+          {file.path} - {file.size} bytes
+        </li>
+      ));
     const [formData, setFormData] = useState({
         action: "/upload",
         method: "post",
@@ -66,11 +74,7 @@ export const FileUpload = () => {
             ...formData,
             [name]: files[0],
         });
-        const formDataObject = new FormData();
-        for (const key in formData) {
-            formDataObject.append(key, formData[key]);
-        }
-        console.log("formDataObject->", formDataObject);
+        alert("onChange work!");
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -86,18 +90,25 @@ export const FileUpload = () => {
                     .then(res => res.json())
                     .then(json => console.log('UPLOAD RESULT', json))
         }
-
+        
     return (
         <>
             <form onSubmit={handleSubmit}>
                 <label>
                     File:
-                    <input type="file" name="photo" id='photo' onChange={handleInputChange}/>
+                    <section style={{border:"solid", width:"300px"}}className="container">
+                        <div {...getRootProps({className: 'dropzone'})}>
+                            <input type="file" name="photo" id='photo' {...getInputProps()} onChange={handleInputChange}/>
+                            <p >Drag 'n' drop some files here, or click to select files</p>
+                        </div>
+                    </section>
                     <button type="submit">Submit</button>
                 </label>
             </form>
+            <h4>Files</h4>
+            <ul>{files}</ul>
             <img 
-                // src="http://shop-roles.node.ed.asmer.org.ua/images/07c58ea27cb478a9c745795b58b83b35" 
+                // src="http://shop-roles.node.ed.asmer.org.ua/images/0254ce62f073b0a2da0ea5e163a2c56b" 
                 alt="" 
                 style = {{ width : "300px", heigth : "200px", objectFit: 'contain' }}/>
         </>

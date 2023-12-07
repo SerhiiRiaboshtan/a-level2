@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
 import { jwtDecode} from "../../../utils/jwtDecode";
 import { api } from '../../rtkQuery';
 import { cartSlice } from './cartReducer';
 import { catSlice } from "./categoryReducer";
+
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -45,11 +47,13 @@ export const actionFullRegistration = (login, password) =>
             alert('Ошибка регистрации: '+errorText);
         }
         else {
-            console.log("data from actionFullRegistration->", data);
+            // console.log("data from actionFullRegistration->", data);
             dispatch(actionFullLogin(login, password));
+            
         } 
         
     }
+
 const actionUserInfo = () => 
     async (dispatch, getState) => {
         const {auth} = getState();
@@ -62,7 +66,6 @@ const actionUserInfo = () =>
         }
     }
 
-
 export const actionLogout = () => 
     dispatch => {
         dispatch(authSlice.actions.logout());
@@ -71,5 +74,11 @@ export const actionLogout = () =>
         
     } 
 
+export const actionSetNick = ({_id, nick}) =>
+    async dispatch => {
+        const {data} = await dispatch(api.endpoints.setUserNick.initiate({_id, nick}));
+        console.log("data from actionSetNick->", data);
+        dispatch(actionUserInfo());
+    }
 
     

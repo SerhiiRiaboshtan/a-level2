@@ -119,6 +119,19 @@ export const api = createApi({
                 variables: {goods}
             })
         }),
+        setUserNick: builder.mutation({
+            query: ({_id, nick}) => ({
+                document: `
+                    mutation setNick($_id:String, $nick:String) {
+                        UserUpsert(user: {_id: $_id, nick: $nick}){
+                            _id nick
+                        }
+                    }
+                    `,
+                variables: {_id, nick}
+            }),
+            invalidatesTags: (result, error, arg) => ([{type: 'User', id: arg._id}])
+        }),
     })
 })
 

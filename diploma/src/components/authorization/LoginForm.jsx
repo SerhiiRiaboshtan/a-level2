@@ -23,6 +23,8 @@ function LoginForm() {
   const handleSubmit = event => {
     event.preventDefault();
     dispatch(actionFullLogin({'login': inputValue.login, 'password': inputValue.password}));
+    
+            navigate('/user/profile')
   }
 
   return (

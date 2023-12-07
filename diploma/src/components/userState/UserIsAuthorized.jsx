@@ -63,7 +63,10 @@ function UserIsAuthorized({ userName, userAdmin }) {
     { 
       icon: <LogoutIcon />,
       label: "Выйти",
-      callBack:()=>dispatch(actionLogout()) 
+      callBack:()=>{
+        dispatch(actionLogout()) ;
+        navigate('/');
+      }
     },
     
   ];

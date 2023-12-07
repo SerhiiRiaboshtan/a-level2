@@ -16,3 +16,42 @@
 .oneOrderHeader {
     text-align: center;
 }
+
+.container {
+    display:flex;
+    flex-direction: row;
+    height: 100px;
+}
+.containerHeader {
+    display:flex;
+    flex-direction: row;
+    height: 25px;
+    text-align: center;
+    
+}
+
+.picture {
+    border: 1px solid black;
+    width: 100px;
+    object-fit: contain;
+}
+
+.name {
+    border: 1px solid black;
+    width: 400px;
+}
+
+.count {
+    border: 1px solid black;
+    width: 100px;
+}
+
+.price {
+    border: 1px solid black;
+    width: 100px;
+}
+
+.itog {
+    border: 1px solid black;
+    width: 100px;
+}

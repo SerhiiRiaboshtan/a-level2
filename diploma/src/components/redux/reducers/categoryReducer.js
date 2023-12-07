@@ -22,7 +22,7 @@ export const catSlice = createSlice({
             }
         },
         saveUserOrders (state, {payload: orders}){
-            console.log('data in saveUserOrders', orders );
+            // console.log('data in saveUserOrders', orders );
             state.userOrders = orders;
         },
         clear (state) {

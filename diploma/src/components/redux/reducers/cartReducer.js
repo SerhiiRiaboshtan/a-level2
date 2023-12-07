@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { store } from "../index";
+import { api } from '../../rtkQuery';
+
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {},
@@ -7,7 +10,6 @@ export const cartSlice = createSlice({
         cartAdd: (state,{payload: {count, good}}) =>{
             if(count>0){    
                 if (!state[good._id]) {
-                    // return {...state, ...{[good._id]:{'count':count, "good":good}}};// 
                     state[good._id] = {count, good};
                 }
                 else {
@@ -35,7 +37,6 @@ export const cartSlice = createSlice({
             return {}
         },
         cartSet: (state,{payload: {count, good}}) =>{
-            console.log('cartSet->', count, good);
             if(count>0){
                 state[good._id] = {...state[good._id], 'count': count};
             }
@@ -43,3 +44,18 @@ export const cartSlice = createSlice({
         }
     }
 })
+
+export const actionSetOrder = () =>
+    async (dispatch, getState)  => {
+        const cart = {...store.getState().cart};
+        delete cart._persist;
+        const arrGoods=[];
+        for(const key in cart){
+            arrGoods.push({'good':{'_id':cart[key].good._id}, 'count':cart[key].count})
+        }
+        const res = await dispatch(api.endpoints.setOrder.initiate({'goods': arrGoods}));
+        if(Object.hasOwn(res.data.OrderUpsert, '_id')){
+            alert("Заказ успешно создан!");
+            dispatch(cartSlice.actions.cartClear());
+        }
+    }

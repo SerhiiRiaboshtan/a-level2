@@ -90,6 +90,7 @@ export const api = createApi({
                     good {
                       _id
                       name
+                      images {url}
                     }
                     total
                     price
@@ -102,6 +103,20 @@ export const api = createApi({
               }
             `,
                 variables : {_id}
+            })
+        }),
+        setOrder: builder.mutation({   // размещение заказа
+            query: ({goods}) => ({
+                document: 
+                    `   mutation newOrder1 ($goods: [OrderGoodInput]){
+                        OrderUpsert(order: {orderGoods: $goods}) {
+                          _id
+                          createdAt
+                          total
+                        }
+                      }
+                    `,
+                variables: {goods}
             })
         }),
     })

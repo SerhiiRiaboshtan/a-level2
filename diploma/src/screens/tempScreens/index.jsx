@@ -66,6 +66,11 @@ export const FileUpload = () => {
             ...formData,
             [name]: files[0],
         });
+        const formDataObject = new FormData();
+        for (const key in formData) {
+            formDataObject.append(key, formData[key]);
+        }
+        console.log("formDataObject->", formDataObject);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -91,7 +96,10 @@ export const FileUpload = () => {
                     <button type="submit">Submit</button>
                 </label>
             </form>
-            <img src="http://shop-roles.node.ed.asmer.org.ua/images/4fce223a90a98741ec52b8cd1cb8da73" alt="" />
+            <img 
+                // src="http://shop-roles.node.ed.asmer.org.ua/images/07c58ea27cb478a9c745795b58b83b35" 
+                alt="" 
+                style = {{ width : "300px", heigth : "200px", objectFit: 'contain' }}/>
         </>
     )
 }

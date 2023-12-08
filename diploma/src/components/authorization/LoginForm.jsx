@@ -23,8 +23,6 @@ function LoginForm() {
   const handleSubmit = event => {
     event.preventDefault();
     dispatch(actionFullLogin({'login': inputValue.login, 'password': inputValue.password}));
-    
-            navigate('/user/profile')
   }
 
   return (
@@ -74,7 +72,7 @@ function LoginForm() {
               color="primary"
               fullWidth
               className={styles.submit}
-              onClick={()=>navigate('/registration')}
+              onClick={()=>navigate('/user/registration')}
             >
               Перейти к регистрации
             </Button>

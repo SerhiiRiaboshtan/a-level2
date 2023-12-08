@@ -54,14 +54,14 @@ const RegistrationForm = () => {
               required
               onChange={handleChangePassword}
             />
-            <TextField
+            {/* <TextField
               label="Ник"
               variant="outlined"
               margin="normal"
               fullWidth
               // required
               onChange={handleChangeNickname}
-            />
+            /> */}
             <Button
               type="submit"
               variant="contained"

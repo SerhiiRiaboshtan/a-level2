@@ -9,10 +9,10 @@ const Navigation = () => {
         <div className={styles.classNavigationContainer}>
             <ul className = {styles.classNavigation}>
                 <li className={styles.classNavigationLi}>
-                    <Link to={'/mainpage'}>MainPage</Link>
+                    <Link to={'/mainpage'}><div className={styles.classLink}>MainPage</div></Link>
                 </li>
                 <li className={styles.classNavigationLi}>
-                    <Link to={'/contacts'}>Contacs</Link>
+                    <Link to={'/contacts'}><div className={styles.classLink}>Contacs</div></Link>
                 </li> 
             </ul>
             

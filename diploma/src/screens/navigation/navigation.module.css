@@ -17,14 +17,28 @@
     align-items: center;
     list-style: none;
     text-align: center;
+    width: 30vw;
+    height: 50px;
     
 }
 
 .classNavigationLi {
     width: 100px;
+    flex-grow: 1;
+    
 }
 
 .classNavigationLi >a {
     text-decoration: none;
 } 
 
+.classLink {
+    color: white;
+    
+}
+
+.userStateOnScreen {
+    display: flex;
+    flex-grow: 1;
+    justify-content: end;
+}

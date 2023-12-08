@@ -62,6 +62,7 @@ export const FileUpload = () => {
           {file.path} - {file.size} bytes
         </li>
       ));
+    console.log("acceptedFiles->", files);
     const [formData, setFormData] = useState({
         action: "/upload",
         method: "post",
@@ -70,6 +71,7 @@ export const FileUpload = () => {
     });
     const handleInputChange = (e) => {
         const { name, files } = e.target;
+        console.log("handleInputChange->", files[0], 'name->', name);
         setFormData({
             ...formData,
             [name]: files[0],
@@ -78,6 +80,10 @@ export const FileUpload = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        setFormData({
+            ...formData,
+            'photo': acceptedFiles[0],
+        });
         const formDataObject = new FormData();
         for (const key in formData) {
             formDataObject.append(key, formData[key]);

@@ -78,7 +78,7 @@ export const actionSetNick = ({_id, nick}) =>
     async dispatch => {
         const {data} = await dispatch(api.endpoints.setUserNick.initiate({_id, nick}));
         console.log("data from actionSetNick->", data);
-        dispatch(actionUserInfo());
+        await dispatch(actionUserInfo());
     }
 
     

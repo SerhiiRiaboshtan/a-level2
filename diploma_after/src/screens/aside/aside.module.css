@@ -1,0 +1,10 @@
+.asideLeft {
+    width: 20vw;
+    background-color:lightblue;
+    height:84vh;
+    border: 1px solid green;
+    /* margin: 10px; */
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+}

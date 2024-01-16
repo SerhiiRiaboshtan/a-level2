@@ -1,0 +1,72 @@
+.cartTopView {
+    display: flex;
+    align-items: center;
+}
+
+.amountCart {
+    color: white;
+    background-color: grey;
+}
+
+.cartImage {
+    width: 40px;
+    height: 50px;
+    margin-right: -15px;
+} 
+
+.cartItems {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    flex-grow:1; 
+}
+.containerHeader {
+    display:flex;
+    flex-direction: row;
+    height: 25px;
+    text-align: center;
+    
+}
+
+.container {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.oneRow {
+    display: flex;
+    height: 100px;
+}
+
+.picture {
+    border: 1px solid black;
+    width: 100px;
+    object-fit: contain;
+}
+
+.name {
+    border: 1px solid black;
+    width: 400px;
+}
+
+.count {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    width: 100px;
+}
+
+.price {
+    border: 1px solid black;
+    width: 100px;
+}
+
+.btn {
+    width: 25px;
+}
+
+.countSet {
+    display: flex;
+    flex-grow: 1;
+    width: 45px;
+}

@@ -1,0 +1,44 @@
+.classNavigationContainer {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: grey;
+    margin: 5px;
+    padding-right: 5px;
+    /* height: 5vh; */
+    align-items: flex-start;
+    justify-content: space-between;
+    max-height: 50px; z-index: 5;
+}
+.classNavigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    width: 30vw;
+    height: 50px;
+    
+}
+
+.classNavigationLi {
+    width: 100px;
+    flex-grow: 1;
+    
+}
+
+.classNavigationLi >a {
+    text-decoration: none;
+} 
+
+.classLink {
+    color: white;
+    
+}
+
+.userStateOnScreen {
+    display: flex;
+    flex-grow: 1;
+    justify-content: end;
+}

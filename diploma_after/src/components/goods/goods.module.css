@@ -1,0 +1,7 @@
+.categoryGoods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    max-height: 85vh;
+    overflow-y: auto;
+}
